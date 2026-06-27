@@ -1,0 +1,1222 @@
+<!doctype html>
+<html lang="de" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tennisclub Gossau SG – Spiel und Spass auf der Mooswies</title>
+    <!-- Tailwind CSS (Play CDN for standalone portability) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'tennis-dark': '#1e3f20',
+              'tennis-green-50': '#f4fbf6',
+              'tennis-green-100': '#e6f4ea',
+              'tennis-green-500': '#2d6a4f',
+              'tennis-green-600': '#1b4332',
+              'tennis-green-700': '#1e3f20',
+              'tennis-green-800': '#122514',
+              'clay-50': '#fdf5f5',
+              'clay-100': '#fbebeb',
+              'clay-500': '#d94e34',
+              'clay-600': '#bc4749',
+              'clay-700': '#9c3b3d',
+              'clay-800': '#7e2f31',
+            },
+            fontFamily: {
+              sans: ['Plus Jakarta Sans', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+              display: ['Outfit', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <!-- FontAwesome for clean UI icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #fbfaf8;
+        color: #1e293b;
+      }
+      .font-display {
+        font-family: 'Outfit', sans-serif;
+      }
+      #tcg-header {
+        background-color: #122514 !important;
+      }
+      .tcg-logo-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transform: scale(0.9);
+        transform-origin: center;
+        mix-blend-mode: normal;
+        filter: none;
+      }
+      .mobile-nav-panel {
+        max-height: calc(100dvh - 5.5rem);
+      }
+      @media (max-width: 1023px) {
+        a[class],
+        button,
+        input,
+        select,
+        textarea {
+          min-height: 44px;
+        }
+        a[class],
+        button {
+          min-width: 44px;
+        }
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col antialiased selection:bg-clay-600 selection:text-white">
+
+    <!-- 1. STICKY GLASSMORPHIC NAVIGATION -->
+    <header id="tcg-header" class="fixed top-0 left-0 right-0 z-50 bg-[#122514] shadow-2xl border-b border-tennis-green-500/30 py-3 transition-all duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between">
+          
+          <!-- Brand Logo & Name -->
+          <a href="#" class="flex items-center space-x-2.5 sm:space-x-3 group min-w-0">
+            <div class="w-11 h-11 sm:w-14 sm:h-14 flex items-center justify-center relative overflow-hidden bg-white rounded-xl p-1.5 border border-stone-200 shadow-md">
+              <img 
+                src="https://www.tcgossau.ch/clubdesk/fileservlet?type=image&id=1000114&s=djEt5NFc9JInLu3fcXtbC6fcCgKBG6lw5Vfr-VXkENkERX0=" 
+                alt="TC Gossau SG Logo" 
+                class="tcg-logo-img"
+                onerror="this.style.display='none'; document.getElementById('logo-fallback').classList.remove('hidden');"
+              />
+              <div id="logo-fallback" class="hidden absolute inset-0 bg-tennis-green-600 rounded-xl flex items-center justify-center text-white font-black text-sm font-display tracking-widest">
+                TCG
+              </div>
+            </div>
+            <div class="min-w-0">
+              <h1 class="text-white font-extrabold text-sm sm:text-lg lg:text-xl leading-tight tracking-tight group-hover:text-clay-500 transition-colors font-display truncate">
+                Tennisclub Gossau SG
+              </h1>
+              <p class="hidden md:block text-white/90 text-xs tracking-wider font-semibold uppercase mt-0.5 font-sans">
+                Spiel & Spass Mooswies
+              </p>
+            </div>
+          </a>
+
+          <!-- Desktop Navigation Tabs (Exactly 5 tabs) -->
+          <nav class="hidden lg:flex items-center space-x-1" id="desktop-nav">
+            <a href="#news-section" class="px-4 py-2 rounded-full text-sm font-bold text-white hover:text-clay-500 hover:bg-white/10 transition-all">Home / News</a>
+            <a href="#club-section" class="px-4 py-2 rounded-full text-sm font-bold text-white hover:text-clay-500 hover:bg-white/10 transition-all">Club & Mannschaften</a>
+            <a href="#training-section" class="px-4 py-2 rounded-full text-sm font-bold text-white hover:text-clay-500 hover:bg-white/10 transition-all">Training</a>
+            <a href="#membership-section" class="px-4 py-2 rounded-full text-sm font-bold text-white hover:text-clay-500 hover:bg-white/10 transition-all">Tarife & Mitgliedschaft</a>
+            <a href="#booking-section" class="px-4 py-2 rounded-full text-sm font-bold text-clay-500 hover:text-clay-400 hover:bg-white/10 transition-all">Buchen / Kontakt</a>
+          </nav>
+
+          <!-- High-Contrast Direct Booking CTA -->
+          <div class="hidden lg:flex items-center space-x-3">
+            <a
+              href="https://app.tennis-challenge.net/gossausg"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center space-x-2 bg-clay-600 hover:bg-clay-500 text-white px-5 py-2.5 rounded-full font-bold text-sm shadow-md transition-all duration-200 min-h-[44px]"
+            >
+              <i class="fa-solid fa-calendar-check text-xs"></i>
+              <span>Platz buchen</span>
+            </a>
+          </div>
+
+          <!-- Mobile Toggle (hamburger) -->
+          <div class="lg:hidden flex items-center space-x-3">
+            <a
+              href="https://app.tennis-challenge.net/gossausg"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="bg-clay-600 hover:bg-clay-500 text-white p-2.5 rounded-full flex items-center justify-center shadow-md"
+              aria-label="Platz buchen"
+            >
+              <i class="fa-solid fa-calendar-check"></i>
+            </a>
+            <button
+              id="mobile-menu-toggle"
+              class="text-white hover:text-clay-500 focus:outline-none p-2.5 rounded-lg hover:bg-white/10 transition-all"
+              aria-label="Navigation umschalten"
+              aria-expanded="false"
+              aria-controls="mobile-nav-overlay"
+              type="button"
+            >
+              <i id="hamburger-icon" class="fa-solid fa-bars text-xl block"></i>
+              <i id="close-icon" class="fa-solid fa-xmark text-xl hidden"></i>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Overlay -->
+      <div class="hidden lg:hidden fixed inset-0 z-40" id="mobile-nav-overlay" aria-hidden="true">
+        <button
+          id="mobile-nav-backdrop"
+          class="absolute inset-0 bg-black/55 backdrop-blur-[1px]"
+          aria-label="Navigationsmenü schliessen"
+          type="button"
+        ></button>
+        <div
+          id="mobile-nav-panel"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile Navigation"
+          class="mobile-nav-panel relative mt-[84px] mx-4 rounded-2xl bg-tennis-dark border border-tennis-green-500/30 shadow-2xl overflow-y-auto opacity-0 -translate-y-2 transition-all duration-200 pointer-events-none"
+        >
+          <div class="px-3 pt-3 pb-4 space-y-1">
+            <a href="#news-section" class="mobile-nav-link flex items-center px-4 py-3 rounded-lg text-base font-semibold text-gray-200 hover:bg-white/5 hover:text-white transition-colors">Home / News</a>
+            <a href="#club-section" class="mobile-nav-link flex items-center px-4 py-3 rounded-lg text-base font-semibold text-gray-200 hover:bg-white/5 hover:text-white transition-colors">Club & Mannschaften</a>
+            <a href="#training-section" class="mobile-nav-link flex items-center px-4 py-3 rounded-lg text-base font-semibold text-gray-200 hover:bg-white/5 hover:text-white transition-colors">Training</a>
+            <a href="#membership-section" class="mobile-nav-link flex items-center px-4 py-3 rounded-lg text-base font-semibold text-gray-200 hover:bg-white/5 hover:text-white transition-colors">Tarife & Mitgliedschaft</a>
+            <a href="#booking-section" class="mobile-nav-link flex items-center px-4 py-3 rounded-lg text-base font-semibold text-gray-200 hover:bg-white/5 hover:text-white transition-colors">Buchen / Kontakt</a>
+
+            <div class="pt-4 pb-2 px-1 border-t border-white/10 mt-2">
+              <a
+                href="https://app.tennis-challenge.net/gossausg"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mobile-nav-link w-full flex items-center justify-center space-x-2 bg-clay-600 hover:bg-clay-500 text-white py-3 px-4 rounded-xl font-bold transition-all shadow-md text-base"
+              >
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Platzreservation</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. PREMIUM HERO SECTION -->
+    <section id="hero-section" class="relative text-white border-b border-stone-200/70">
+      <div class="relative w-full min-h-[78vh] sm:min-h-0">
+        <img
+          src="https://www.tc-gossau.ch/images/headers/ON-LINE.jpg"
+          alt="TC Gossau Headerbild"
+          class="w-full h-[42vh] sm:h-auto object-cover block opacity-95"
+          referrerpolicy="no-referrer"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-black/35 via-black/30 to-black/45"></div>
+
+        <div class="relative sm:absolute sm:inset-0 z-10 max-w-7xl mx-auto left-0 right-0 px-4 sm:px-6 lg:px-8 flex items-start sm:items-center justify-center text-center pt-8 sm:pt-24 pb-10 sm:pb-12 bg-tennis-dark sm:bg-transparent">
+          <div>
+            <h2 class="text-xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight leading-tight text-white max-w-5xl mx-auto mb-4 sm:mb-6 font-display drop-shadow-lg">
+              Spiel und Spass auf der Mooswies – Dein Tennisclub in Gossau
+            </h2>
+
+            <p class="text-sm sm:text-lg lg:text-xl text-white/95 max-w-3xl mx-auto mb-7 sm:mb-10 leading-relaxed drop-shadow">
+              Willkommen beim Tennisclub Gossau SG! Erlebe Tennis auf unseren modernisierten Allwetter-Sandplätzen (Conipur Tennis Force) mit erstklassigen asymmetrischen LED-Flutlichtanlagen. Ganzjähriges Spielvergnügen für alle Spielstärken.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="#membership-contact-container"
+                class="w-full sm:w-auto flex items-center justify-center space-x-2 bg-clay-600 hover:bg-clay-500 text-white font-bold text-base sm:text-lg px-8 py-3.5 rounded-full shadow-lg transition-all duration-300 hover:-translate-y-0.5"
+              >
+                <span>Mitglied werden</span>
+                <i class="fa-solid fa-arrow-right text-sm"></i>
+              </a>
+
+              <a
+                href="https://app.tennis-challenge.net/gossausg"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full sm:w-auto flex items-center justify-center space-x-2 bg-tennis-dark/90 hover:bg-tennis-green-800 text-white font-bold text-base sm:text-lg px-8 py-3.5 rounded-full border border-white/25 transition-all duration-300 hover:-translate-y-0.5"
+              >
+                <i class="fa-solid fa-calendar-days text-clay-500"></i>
+                <span>Platz reservieren</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. NEWS & EVENTS SECTION -->
+    <section id="news-section" class="py-20 bg-white scroll-mt-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div class="max-w-xl">
+            <span class="text-xs font-bold text-clay-600 uppercase tracking-widest bg-clay-100 px-3 py-1.5 rounded-full">Club-News</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-tennis-dark tracking-tight mt-3 font-display">Aktuelles von der Mooswies</h2>
+          </div>
+          <p class="text-gray-500 max-w-md mt-4 md:mt-0 text-base">
+            Verpasse keine Neuigkeiten mehr rund um den Spielbetrieb, Turniere, Interclub und Vereinsveranstaltungen auf unserer wunderschönen Anlage.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- News Card 1 -->
+          <div class="bg-[#fcfbfa] rounded-3xl overflow-hidden border border-stone-200/60 shadow-sm flex flex-col justify-between group hover:shadow-md transition-all duration-300">
+            <div class="relative aspect-video overflow-hidden bg-stone-100">
+              <img 
+                src="https://tcgossau.ch/clubdesk/fileservlet?inline=true&type=image&id=1000028&s=djEtA4jKO4lg7XysOYIKoon4jz6dF4gTlb60Dv32H71y5Kg=" 
+                alt="Saison Eröffnung" 
+                class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500" 
+                referrerpolicy="no-referrer"
+              />
+              <span class="absolute top-4 left-4 bg-clay-600 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">Saison-Highlight</span>
+            </div>
+            <div class="p-6 sm:p-8 flex-grow flex flex-col justify-between">
+              <div>
+                <span class="text-xs font-mono font-bold text-gray-400">Event • Saison 2026</span>
+                <h3 class="text-2xl font-extrabold text-tennis-dark mt-2 mb-3 font-display">Saison-Eröffnungsturnier mit neuem LED-Flutlicht</h3>
+                <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                  Das traditionelle Eröffnungsturnier für alle Clubmitglieder und interessierten Gäste. Erlebe das Spielen auf unseren gelenkschonenden Conipur Tennis Force Allwetterplätzen unter unserer neuen, schattenfreien LED-Flutlichtanlage! Im Anschluss stossen wir gemeinsam an.
+                </p>
+              </div>
+              <a href="https://app.tennis-challenge.net/gossausg" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-clay-600 hover:text-clay-500 font-bold text-sm transition-colors">
+                <span>Jetzt anmelden via Tennis-Challenge</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- News Card 2 -->
+          <div class="bg-[#fcfbfa] rounded-3xl overflow-hidden border border-stone-200/60 shadow-sm flex flex-col justify-between group hover:shadow-md transition-all duration-300">
+            <div class="relative aspect-video overflow-hidden bg-stone-100">
+              <img 
+                src="https://www.tcoberuzwil.ch/clubdesk/fileservlet?inline=true&type=image&id=1000171&s=djEtSzHe7DepbIiJuACRwmx-INPUpsx8bLdVuprO9PexFNI=" 
+                alt="Junioren Training" 
+                class="w-full h-full object-cover transition-transform duration-500" 
+                referrerpolicy="no-referrer"
+              />
+              <span class="absolute top-4 left-4 bg-tennis-green-600 text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">Nachwuchs</span>
+            </div>
+            <div class="p-6 sm:p-8 flex-grow flex flex-col justify-between">
+              <div>
+                <span class="text-xs font-mono font-bold text-gray-400">Training • Sommercamp</span>
+                <h3 class="text-2xl font-extrabold text-tennis-dark mt-2 mb-3 font-display">Junioren-Sommercamp mit Kozak & rundumtennis</h3>
+                <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                  In enger Abstimmung mit unserem Vorstand veranstalten wir das beliebte Intensiv-Sommercamp für Kinder und Jugendliche. In Kooperation mit unseren Partner-Akademien "Tennisschule Kozak" und "rundumtennis" bieten wir professionelles Coaching für alle Altersklassen an.
+                </p>
+              </div>
+              <a href="#training-section" class="inline-flex items-center gap-2 text-clay-600 hover:text-clay-500 font-bold text-sm transition-colors">
+                <span>Camp-Details & Training ansehen</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. LIVE PLATZRESERVATION INTEGRATION (REAL DATA) -->
+    <section id="booking-section" class="py-20 bg-stone-50 border-t border-b border-stone-200/50 scroll-mt-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <span class="text-xs font-bold text-clay-600 uppercase tracking-widest bg-clay-100 px-3 py-1.5 rounded-full">Platzreservation</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-tennis-dark tracking-tight mt-3 font-display">Platzreservation & Spielbetrieb via Tennis-Challenge</h2>
+          <p class="text-gray-600 mt-4 text-base">
+            Sichere dir deinen Tennisplatz auf der Mooswies bequem online. Der TC Gossau SG nutzt dafür das moderne, vollintegrierte Reservierungssystem von Tennis-Challenge.
+          </p>
+        </div>
+
+        <!-- Real Live Widget Embedded Iframe -->
+        <div class="bg-white rounded-3xl p-4 sm:p-6 shadow-xl border border-stone-200/80 mb-8 overflow-hidden">
+          <div class="flex items-center justify-between mb-4 pb-4 border-b border-stone-100">
+            <div class="flex items-center space-x-2">
+              <span class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500 absolute"></span>
+              <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest ml-2 font-mono">Live Buchungssystem</span>
+            </div>
+            <div class="text-xs text-gray-400 hidden sm:block">
+              <i class="fa-solid fa-lock mr-1"></i> Gesicherte HTTPS-Verbindung
+            </div>
+          </div>
+          <iframe 
+            src="https://app.tennis-challenge.net/gossausg" 
+            class="w-full h-[520px] sm:h-[620px] lg:h-[650px] border-0 rounded-2xl shadow-inner bg-stone-50" 
+            allowfullscreen
+            title="Tennis-Challenge Platzreservationssystem"
+          ></iframe>
+        </div>
+
+        <!-- Backup CTA Button directly underneath -->
+        <div class="text-center">
+          <a
+            href="https://app.tennis-challenge.net/gossausg"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center space-x-2 bg-clay-600 hover:bg-clay-500 text-white font-bold px-8 py-4 rounded-full shadow-lg transition-all duration-300 hover:-translate-y-0.5"
+          >
+            <span>Direkt in der Tennis-Challenge App buchen</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+          </a>
+          <p class="text-xs text-gray-500 mt-3 font-mono">
+            Optimiert für Smartphones, Tablets und Desktop-Browser.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4b. CLUB MOTTO BANNER (PREMIUM GREEN SPACE) -->
+    <section class="py-20 bg-[#122514] text-white relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-1/2 left-1/4 w-96 h-96 bg-[#3d7a44] rounded-full filter blur-3xl -translate-y-1/2"></div>
+        <div class="absolute top-1/2 right-1/4 w-96 h-96 bg-[#cf533c] rounded-full filter blur-3xl -translate-y-1/2"></div>
+      </div>
+      <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <i class="fa-solid fa-quote-left text-clay-500 text-4xl opacity-80"></i>
+        <h3 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight font-display text-white">
+          « Spiel und Spass auf der Mooswies »
+        </h3>
+        <p class="text-stone-300 text-xs sm:text-sm tracking-widest font-mono uppercase font-semibold">
+          Das gelebte Clubmotto des Tennisclub Gossau SG seit 1974
+        </p>
+      </div>
+    </section>
+
+    <!-- 5. CLUB & LEADERSHIP SECTION (EXACT VORSTAND DATA & ARCHITECTURE) -->
+   <section id="club-section" class="py-20 bg-white scroll-mt-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
+          <div class="lg:col-span-7 space-y-6">
+            <span class="text-xs font-bold text-clay-600 uppercase tracking-widest bg-clay-100 px-3 py-1.5 rounded-full">Unser Verein</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-tennis-dark tracking-tight font-display">Tennisclub Gossau SG – Mooswies</h2>
+            <p class="text-gray-600 leading-relaxed text-base">
+              Der Tennisclub Gossau SG wurde 1974 gegründet und ist seit über 50 Jahren die sportliche Heimat für Tennisbegeisterte in Gossau SG und Umgebung. Unsere idyllisch gelegene Spielanlage Mooswies verfügt über <strong>4 modernisierte "Conipur Tennis Force" Allweather-Sandplätze</strong>, die ganzjährig bespielbar sind und perfekten Sandplatzkomfort bieten.
+            </p>
+            <p class="text-gray-600 leading-relaxed text-base">
+              Ab der Saison 2026 sind alle vier Plätze mit modernster, <strong>asymmetrischer LED-Flutlichtbeleuchtung</strong> ausgestattet, die erstklassiges, schatten- und blendfreies Spielen bis 22:00 Uhr ermöglicht. Unter der engagierten Führung von Präsident Claudio Büsser pflegen wir ein aktives Clubleben mit Interclubmannschaften und einer hervorragenden Juniorenabteilung.
+            </p>
+          </div>
+          <div class="lg:col-span-5 relative">
+            <div class="aspect-video rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-stone-100">
+              <img 
+                src="https://www.tcgossau.ch/clubdesk/fileservlet?type=image&id=1000081&s=djEtNJdqXGPu6QGxlv3gPBSxUx2qB8zmIWo8XnnFS7HDNFA=" 
+                alt="TC Gossau Anlage Mooswies" 
+                class="w-full h-full object-cover" 
+              />
+            </div>
+            <div class="absolute -bottom-6 -left-4 bg-white px-5 py-4 rounded-2xl shadow-lg border border-stone-100 flex items-center space-x-3">
+              <span class="text-2xl font-extrabold text-clay-500">1974</span>
+              <span class="text-xs text-gray-500 font-mono font-bold uppercase leading-none">Gegründet in Gossau SG</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interclub Mannschaften 2026 -->
+        <div class="mb-16">
+          <div class="text-center max-w-3xl mx-auto mb-8">
+            <span class="text-xs font-bold text-clay-600 uppercase tracking-widest bg-stone-50 px-3 py-1.5 rounded-full">Saison 2026</span>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-tennis-dark mt-3 font-display">Interclub Mannschaften</h3>
+            <p class="text-sm text-gray-600 mt-3">Unsere Teams von Nachwuchs bis Aktive im Überblick.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+            <article class="bg-stone-50 rounded-2xl border border-stone-200 p-5 shadow-sm hover:shadow-md transition-all duration-300">
+              <h4 class="text-lg font-extrabold text-tennis-dark font-display">Schülerinnen und Schüler</h4>
+              <p class="text-sm font-semibold text-clay-600 mt-2">Nachwuchs</p>
+            </article>
+
+            <article class="bg-stone-50 rounded-2xl border border-stone-200 p-5 shadow-sm hover:shadow-md transition-all duration-300">
+              <h4 class="text-lg font-extrabold text-tennis-dark font-display">Damen 50+</h4>
+              <p class="text-sm font-semibold text-clay-600 mt-2">Damen • 1. Liga</p>
+            </article>
+
+            <article class="bg-stone-50 rounded-2xl border border-stone-200 p-5 shadow-sm hover:shadow-md transition-all duration-300">
+              <h4 class="text-lg font-extrabold text-tennis-dark font-display">Damen</h4>
+              <p class="text-sm font-semibold text-clay-600 mt-2">Damen • 2. Liga_Aktive</p>
+            </article>
+
+            <article class="bg-stone-50 rounded-2xl border border-stone-200 p-5 shadow-sm hover:shadow-md transition-all duration-300">
+              <h4 class="text-lg font-extrabold text-tennis-dark font-display">Damen 30+</h4>
+              <p class="text-sm font-semibold text-clay-600 mt-2">Damen • 2. Liga</p>
+            </article>
+
+            <article class="bg-stone-50 rounded-2xl border border-stone-200 p-5 shadow-sm hover:shadow-md transition-all duration-300">
+              <h4 class="text-lg font-extrabold text-tennis-dark font-display">Herren</h4>
+              <p class="text-sm font-semibold text-clay-600 mt-2">Herren • 2. Liga Aktive</p>
+            </article>
+
+            <article class="bg-stone-50 rounded-2xl border border-stone-200 p-5 shadow-sm hover:shadow-md transition-all duration-300">
+              <h4 class="text-lg font-extrabold text-tennis-dark font-display">Herren</h4>
+              <p class="text-sm font-semibold text-clay-600 mt-2">Herren • 3. Liga Aktive</p>
+            </article>
+
+            <article class="bg-stone-50 rounded-2xl border border-stone-200 p-5 shadow-sm hover:shadow-md transition-all duration-300">
+              <h4 class="text-lg font-extrabold text-tennis-dark font-display">Herren 45+</h4>
+              <p class="text-sm font-semibold text-clay-600 mt-2">Herren • 1. Liga</p>
+            </article>
+
+            <article class="bg-stone-50 rounded-2xl border border-stone-200 p-5 shadow-sm hover:shadow-md transition-all duration-300">
+              <h4 class="text-lg font-extrabold text-tennis-dark font-display">Herren 45+</h4>
+              <p class="text-sm font-semibold text-clay-600 mt-2">Herren • 3. Liga</p>
+            </article>
+          </div>
+        </div>
+
+        <!-- Vorstand Profile Cards (Exact Profile Data Grid) -->
+        <h3 class="text-2xl font-extrabold text-tennis-dark mb-8 text-center font-display">Unser engagierter Vorstand</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <!-- Claudio Büsser -->
+        <div class="bg-[#fcfbfa] rounded-3xl shadow-sm border border-stone-200 overflow-hidden flex flex-col justify-between group hover:border-clay-500 hover:shadow-md transition-all duration-300">
+            <div>
+              <div class="aspect-[4/3] bg-stone-100 relative overflow-hidden flex items-center justify-center">
+                <img 
+                  src="/src/assets/images/claudio_buesser_1782564938014.jpg" 
+                  alt="Claudio Büsser" 
+                  class="absolute inset-0 w-full h-full object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-105 z-10"
+                  onerror="this.src='https://st-galler-nachrichten.ch/uploads/images/articles/66245936/images/66245953.jpeg'; this.onerror=function(){ this.style.display='none'; document.getElementById('cb-fallback').classList.remove('hidden'); };"
+                />
+                <div id="cb-fallback" class="absolute inset-0 bg-gradient-to-br from-[#1b3d22] to-[#0c1a0f] flex items-center justify-center hidden z-0">
+                  <span class="text-white font-black text-5xl font-display tracking-widest opacity-30">CB</span>
+                </div>
+              </div>
+              <div class="p-6">
+                <h4 class="font-extrabold text-tennis-dark text-xl font-display">Claudio Büsser</h4>
+                <p class="text-xs font-semibold text-clay-600 uppercase tracking-widest mt-1">Präsident</p>
+                <p class="text-gray-500 text-sm mt-3 leading-relaxed">
+                  Leitet die strategische Clubausrichtung, Großprojekte und repräsentiert den Club nach außen.
+                </p>
+              </div>
+            </div>
+            <div class="p-6 pt-0 border-t border-stone-100/80 bg-stone-50/50 space-y-2 text-xs text-gray-500">
+              <a href="mailto:claudio.buesser@tcgossau.ch" class="flex items-center space-x-2 hover:text-clay-600">
+                <i class="fa-solid fa-envelope w-4"></i>
+                <span>claudio.buesser@tcgossau.ch</span>
+              </a>
+              <a href="tel:+41792199066" class="flex items-center space-x-2 hover:text-clay-600">
+                <i class="fa-solid fa-phone w-4"></i>
+                <span>+41 79 219 90 66</span>
+              </a>
+            </div>
+          </div>
+          <!-- Stefano Tognazzi -->
+      <div class="bg-[#fcfbfa] rounded-3xl shadow-sm border border-stone-200 overflow-hidden flex flex-col justify-between group hover:border-clay-500 hover:shadow-md transition-all duration-300">
+            <div>
+              <div class="aspect-[4/3] bg-stone-100 relative overflow-hidden flex items-center justify-center">
+                <img 
+                  src="stefano.jpg" 
+                  alt="Stefano Tognazzi" 
+                  class="absolute inset-0 w-full h-full object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-105 z-10"
+                  onerror="this.src='https://tcgossau.ch/clubdesk/fileservlet?type=image&id=1000341&s=djEtQVAekqbJvjF2941sw9O1bQSOuQuhj2lc_qOpv1ZJaCg=&imageFormat=_1024x1024'; this.onerror=function(){ this.style.display='none'; document.getElementById('st-fallback').classList.remove('hidden'); };"
+                />
+                <div id="st-fallback" class="absolute inset-0 bg-gradient-to-br from-[#1b3d22] to-[#0c1a0f] flex items-center justify-center hidden z-0">
+                  <span class="text-white font-black text-5xl font-display tracking-widest opacity-30">ST</span>
+                </div>
+              </div>
+              <div class="p-6">
+                <h4 class="font-extrabold text-tennis-dark text-xl font-display">Stefano Tognazzi</h4>
+                <p class="text-xs font-semibold text-clay-600 uppercase tracking-widest mt-1">Vize-Präsident</p>
+                <p class="text-gray-500 text-sm mt-3 leading-relaxed">
+                  Unterstützt die Vereinsleitung und koordiniert interne Vereinsressourcen und Infrastrukturen.
+                </p>
+              </div>
+            </div>
+            <div class="p-6 pt-0 border-t border-stone-100/80 bg-stone-50/50 space-y-2 text-xs text-gray-500">
+              <a href="mailto:stefano.tognazzi@tcgossau.ch" class="flex items-center space-x-2 hover:text-clay-600">
+                <i class="fa-solid fa-envelope w-4"></i>
+                <span>stefano.tognazzi@tcgossau.ch</span>
+              </a>
+              <a href="tel:+41793074387" class="flex items-center space-x-2 hover:text-clay-600">
+                <i class="fa-solid fa-phone w-4"></i>
+                <span>+41 79 307 43 87</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Matthias Stambach -->
+         <div class="bg-[#fcfbfa] rounded-3xl shadow-sm border border-stone-200 overflow-hidden flex flex-col justify-between group hover:border-clay-500 hover:shadow-md transition-all duration-300">
+            <div>
+              <div class="aspect-[4/3] bg-stone-100 relative overflow-hidden flex items-center justify-center">
+                <img 
+                  src="matthias.jpg" 
+                  alt="Matthias Stambach" 
+                  class="absolute inset-0 w-full h-full object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-105 z-10"
+                  onerror="this.src='https://tcgossau.ch/clubdesk/fileservlet?type=image&id=1000010&s=djEtVfE13DX2PCAtO5qwBF9jrXlF2NR9YKs7TSIHQ02ztOM=&imageFormat=_1024x1024'; this.onerror=function(){ this.style.display='none'; document.getElementById('ms-fallback').classList.remove('hidden'); };"
+                />
+                <div id="ms-fallback" class="absolute inset-0 bg-gradient-to-br from-[#1b3d22] to-[#0c1a0f] flex items-center justify-center hidden z-0">
+                  <span class="text-white font-black text-5xl font-display tracking-widest opacity-30">MS</span>
+                </div>
+              </div>
+              <div class="p-6">
+                <h4 class="font-extrabold text-tennis-dark text-xl font-display">Matthias Stambach</h4>
+                <p class="text-xs font-semibold text-clay-600 uppercase tracking-widest mt-1">Kassier</p>
+                <p class="text-gray-500 text-sm mt-3 leading-relaxed">
+                  Verantwortlich für die gesamte Finanzbuchhaltung, Beitragswesen und Budgetierung des Clubs.
+                </p>
+              </div>
+            </div>
+            <div class="p-6 pt-0 border-t border-stone-100/80 bg-stone-50/50 space-y-2 text-xs text-gray-500">
+              <a href="mailto:matthias.stambach@tcgossau.ch" class="flex items-center space-x-2 hover:text-clay-600">
+                <i class="fa-solid fa-envelope w-4"></i>
+                <span>matthias.stambach@tcgossau.ch</span>
+              </a>
+              <a href="tel:+41786566331" class="flex items-center space-x-2 hover:text-clay-600">
+                <i class="fa-solid fa-phone w-4"></i>
+                <span>+41 78 656 63 31</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Roland Netzer -->
+          <div class="bg-[#fcfbfa] rounded-3xl shadow-sm border border-stone-200 overflow-hidden flex flex-col justify-between group hover:border-clay-500 hover:shadow-md transition-all duration-300">
+            <div>
+              <div class="aspect-[4/3] bg-stone-100 relative overflow-hidden flex items-center justify-center">
+                <img 
+                  src="roland.jpg" 
+                  alt="Roland Netzer" 
+                  class="absolute inset-0 w-full h-full object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-105 z-10"
+                  onerror="this.src='https://tcgossau.ch/clubdesk/fileservlet?type=image&id=1000220&s=djEty-alGwFdZJKyTivxPwqcq2CnxhSXk6YepQEUuxO6sM4=&imageFormat=_1024x1024'; this.onerror=function(){ this.style.display='none'; document.getElementById('rn-fallback').classList.remove('hidden'); };"
+                />
+                <div id="rn-fallback" class="absolute inset-0 bg-gradient-to-br from-[#1b3d22] to-[#0c1a0f] flex items-center justify-center hidden z-0">
+                  <span class="text-white font-black text-5xl font-display tracking-widest opacity-30">RN</span>
+                </div>
+              </div>
+              <div class="p-6">
+                <h4 class="font-extrabold text-tennis-dark text-xl font-display">Roland Netzer</h4>
+                <p class="text-xs font-semibold text-clay-600 uppercase tracking-widest mt-1">Spielleiter</p>
+                <p class="text-gray-500 text-sm mt-3 leading-relaxed">
+                  Koordiniert Turniere, Clubmeisterschaften, Mannschafts-Anmeldungen und den gesamten Spielbetrieb.
+                </p>
+              </div>
+            </div>
+            <div class="p-6 pt-0 border-t border-stone-100/80 bg-stone-50/50 space-y-2 text-xs text-gray-500">
+              <a href="mailto:roland.netzer@tcgossau.ch" class="flex items-center space-x-2 hover:text-clay-600">
+                <i class="fa-solid fa-envelope w-4"></i>
+                <span>roland.netzer@tcgossau.ch</span>
+              </a>
+              <a href="tel:+41762979513" class="flex items-center space-x-2 hover:text-clay-600">
+                <i class="fa-solid fa-phone w-4"></i>
+                <span>+41 76 297 95 13</span>
+              </a>
+            </div>
+          </div>
+          <!-- Sabyasachi Gaan -->
+          
+            <div class="bg-white rounded-3xl shadow-sm border border-stone-200 overflow-hidden flex flex-col justify-between group hover:border-clay-500 hover:shadow-md transition-all duration-300">
+            <div>
+              <div class="aspect-[4/3] bg-stone-100 relative overflow-hidden">
+                <img 
+                  src="sabyasachi.jpg" 
+                  alt="Sabyasachi Gaan" 
+                  class="w-full h-full object-cover group-hover:scale-101 transition-transform duration-300 absolute inset-0 z-10"
+                  onerror="this.src='https://www.tcgossau.ch/clubdesk/fileservlet?type=image&id=1000457&s=djEttYh2Spx-MCKi-NOvIJhKvytqLsbpKAJylgJig77IbJk=&imageFormat=_1024x1024;'; this.onerror=function(){ this.style.display='none'; document.getElementById('sg-text-fallback').classList.remove('hidden'); };"
+                />
+                <div id="sg-text-fallback" class="absolute inset-0 bg-gradient-to-br from-[#1b4332] to-[#0c1a0f] flex items-center justify-center hidden z-0">
+                  <span class="text-white font-black text-5xl font-display tracking-widest opacity-30">SG</span>
+                </div>
+              </div>
+              <div class="p-6">
+                <span class="text-xs font-bold text-clay-600 uppercase tracking-widest font-mono">Jugendförderung</span>
+                <h4 class="font-extrabold text-tennis-dark text-xl mt-1 font-display">Sabyasachi Gaan</h4>
+                <p class="text-xs font-semibold text-gray-500 uppercase mt-0.5">Junioren-Betreuer</p>
+                <p class="text-gray-500 text-xs mt-3 leading-relaxed">
+                  Schnittstelle zu den Tennisschulen, Verantwortlich für die Nachwuchsprogramme, Turnierserien und Sommercamps.
+                </p>
+              </div>
+            </div>
+            <div class="p-6 pt-0 border-t border-stone-100 bg-stone-50/50 space-y-2.5 text-xs text-gray-500">
+              <a href="mailto:sabyasachi.gaan@tcgossau.ch" class="flex items-center space-x-2.5 hover:text-clay-600 transition-colors">
+                <i class="fa-solid fa-envelope text-clay-500 w-4"></i>
+                <span>sabyasachi.gaan@tcgossau.ch</span>
+              </a>
+              <a href="tel:+41794033493" class="flex items-center space-x-2.5 hover:text-clay-600 transition-colors">
+                <i class="fa-solid fa-phone text-clay-500 w-4"></i>
+                <span>+41 79 403 34 93</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Ralph Ammann -->
+          <div class="bg-[#fcfbfa] rounded-3xl shadow-sm border border-stone-200 overflow-hidden flex flex-col justify-between group hover:border-clay-500 hover:shadow-md transition-all duration-300">
+            <div>
+              <div class="aspect-[4/3] bg-stone-100 relative overflow-hidden">
+                <img 
+                  src="ralph.jpg" 
+                  alt="Ralph Ammann" 
+                  class="w-full h-full object-cover rounded-t-lg"
+                  onerror="this.src='https://tcgossau.ch/clubdesk/fileservlet?type=image&id=1000188&s=djEtfHUpAyUebBvvtzRyZ1TawRrV6gsYF66qlxf24922P_A=&imageFormat=_1024x1024';"
+                />
+              </div>
+              <div class="p-6">
+                <h4 class="font-extrabold text-tennis-dark text-xl font-display">Ralph Ammann</h4>
+                <p class="text-xs font-semibold text-clay-600 uppercase tracking-widest mt-1">Platzchef</p>
+                <p class="text-gray-500 text-sm mt-3 leading-relaxed">
+                  Betreut und überwacht die gesamte Platzanlage Mooswies und sorgt für perfekte Spielbedingungen.
+                </p>
+              </div>
+            </div>
+            <div class="p-6 pt-0 border-t border-stone-100/80 bg-stone-50/50 space-y-2 text-xs text-gray-500">
+              <a href="mailto:ralph.ammann@tcgossau.ch" class="flex items-center space-x-2 hover:text-clay-600">
+                <i class="fa-solid fa-envelope w-4"></i>
+                <span>ralph.ammann@tcgossau.ch</span>
+              </a>
+              <a href="tel:+41796832007" class="flex items-center space-x-2 hover:text-clay-600">
+                <i class="fa-solid fa-phone w-4"></i>
+                <span>+41 79 683 20 07</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. TRAINING & ACADEMIES SECTION -->
+    <section id="training-section" class="py-20 bg-stone-50 border-t border-b border-stone-200/50 scroll-mt-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-xs font-bold text-clay-600 uppercase tracking-widest bg-clay-100 px-3 py-1.5 rounded-full">Training & Academy</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-tennis-dark tracking-tight mt-3 font-display">Professionelles Training & Partnerakademien</h2>
+          <p class="text-gray-600 mt-4 text-base leading-relaxed">
+            Für Kinder, Schüler, Junioren und Erwachsene. Geleitet und organisiert in Kooperation mit den erstklassigen Partnerakademien <strong>"Tennisschule Kozak"</strong> und <strong>"rundumtennis"</strong>. Bei Fragen zum Training, Kursen oder Schnupperstunden wenden Sie sich bitte direkt an unseren Junioren-Betreuer <strong>Sabyasachi Gaan unter Tel: +41 79 403 34 93</strong>.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <!-- Kids Tennis Card -->
+          <div class="bg-white rounded-3xl p-6 sm:p-8 border border-stone-200 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300">
+            <div>
+              <span class="text-xs font-bold text-clay-600 uppercase tracking-widest font-mono">Kids High School</span>
+              <h4 class="text-xl font-extrabold text-tennis-dark mt-2 mb-4 font-display">Kids Tennis (5-12 Jahre)</h4>
+              <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                Spielerischer Einstieg nach dem offiziellen Kidskonzept von Swiss Tennis. Wir passen Bälle, Rackets und Court-Grössen altersgerecht an.
+              </p>
+              <ul class="space-y-2.5 text-xs text-gray-500 mb-6">
+                <li class="flex items-center gap-2"><span class="text-clay-500 font-bold">•</span> Motorik- & Ballkoordination</li>
+                <li class="flex items-center gap-2"><span class="text-clay-500 font-bold">•</span> Rote, Orange & Grüne Bälle</li>
+                <li class="flex items-center gap-2"><span class="text-clay-500 font-bold">•</span> Partner: Kozak & rundumtennis</li>
+              </ul>
+            </div>
+            <div class="pt-6 border-t border-stone-200">
+              <p class="text-xs text-gray-400 font-bold uppercase tracking-wider mb-4">Tarif: Ab CHF 160.- / Semester</p>
+              <a href="#training-contact-container" class="block text-center w-full bg-tennis-dark hover:bg-tennis-green-800 text-white font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition-all">Jetzt anfragen</a>
+            </div>
+          </div>
+
+          <!-- School / Junior Card -->
+          <div class="bg-white rounded-3xl p-6 sm:p-8 border border-stone-200 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300">
+            <div>
+              <span class="text-xs font-bold text-clay-600 uppercase tracking-widest font-mono">Schüler & Junioren</span>
+              <h4 class="text-xl font-extrabold text-tennis-dark mt-2 mb-4 font-display">Schülertraining (13-18 Jahre)</h4>
+              <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                Gezielte Ausbildung für Freizeit- und Interclub-Spieler. Technik, Taktik und Spielintelligenz werden systematisch aufgebaut.
+              </p>
+              <ul class="space-y-2.5 text-xs text-gray-500 mb-6">
+                <li class="flex items-center gap-2"><span class="text-clay-500 font-bold">•</span> Taktik & Matchpraxis</li>
+                <li class="flex items-center gap-2"><span class="text-clay-500 font-bold">•</span> Vorbereitung auf Clubturniere</li>
+                <li class="flex items-center gap-2"><span class="text-clay-500 font-bold">•</span> Vergünstigungen bei Familien-Mitgliedschaft</li>
+              </ul>
+            </div>
+            <div class="pt-6 border-t border-stone-200">
+              <p class="text-xs text-gray-400 font-bold uppercase tracking-wider mb-4">Tarif: Ab CHF 210.- / Semester</p>
+              <a href="#training-contact-container" class="block text-center w-full bg-tennis-dark hover:bg-tennis-green-800 text-white font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition-all">Jetzt anfragen</a>
+            </div>
+          </div>
+
+          <!-- Adults Card -->
+          <div class="bg-white rounded-3xl p-6 sm:p-8 border border-stone-200 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300">
+            <div>
+              <span class="text-xs font-bold text-clay-600 uppercase tracking-widest font-mono">Erwachsene & Einzel</span>
+              <h4 class="text-xl font-extrabold text-tennis-dark mt-2 mb-4 font-display">Erwachsenenkurse</h4>
+              <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                Ob blutiger Einsteiger, Wiedereinsteiger oder ambitionierte Interclub-Spieler – massgeschneiderte Einzel- und Gruppentrainings.
+              </p>
+              <ul class="space-y-2.5 text-xs text-gray-500 mb-6">
+                <li class="flex items-center gap-2"><span class="text-clay-500 font-bold">•</span> Abend-Gruppenkurse</li>
+                <li class="flex items-center gap-2"><span class="text-clay-500 font-bold">•</span> Flutlicht-Training</li>
+                <li class="flex items-center gap-2"><span class="text-clay-500 font-bold">•</span> Qualifizierte Profitrainer der Akademien</li>
+              </ul>
+            </div>
+            <div class="pt-6 border-t border-stone-200">
+              <p class="text-xs text-gray-400 font-bold uppercase tracking-wider mb-4">Tarif: Ab CHF 25.- / Stunde (Gruppe)</p>
+              <a href="#training-contact-container" class="block text-center w-full bg-tennis-dark hover:bg-tennis-green-800 text-white font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition-all">Jetzt anfragen</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. TARIFE & MITGLIEDSCHAFT SECTION (EXACT ACCURATE TARIFFS) -->
+    <section id="membership-section" class="py-20 bg-white scroll-mt-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-xs font-bold text-clay-600 uppercase tracking-widest bg-clay-100 px-3 py-1.5 rounded-full">Mitmachen</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-tennis-dark tracking-tight mt-3 font-display">Tarife & Mitgliedschaften</h2>
+          <p class="text-gray-600 mt-4 text-base">
+            Wähle dein passendes Mitgliedschaftsmodell und nimm ganz unkompliziert Kontakt mit uns auf. Für Mitgliedschaften ist Stefano Tognazzi dein Ansprechpartner.
+          </p>
+        </div>
+
+        <!-- Tariff Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          
+          <!-- Schnuppermitgliedschaft (Highlighted Special) -->
+          <div class="bg-tennis-dark text-white rounded-3xl p-6 border-4 border-clay-500 shadow-xl relative flex flex-col justify-between hover:scale-[1.01] transition-all">
+            <div class="absolute -top-3.5 right-1/2 translate-x-1/2 bg-clay-600 text-white text-[10px] font-bold uppercase tracking-widest px-3.5 py-1 rounded-full shadow-md font-mono">Saison-Highlight</div>
+            <div>
+              <h4 class="text-lg font-bold uppercase font-display text-white">Schnuppermitgliedschaft</h4>
+              <p class="text-xs text-tennis-green-100 mt-1 mb-4 leading-relaxed">Für Neumitglieder / Erwachsene zur Kennenlern-Saison.</p>
+              <div class="flex items-baseline mb-4">
+                <span class="text-3xl font-extrabold text-white">CHF 150.00</span>
+                <span class="text-xs text-tennis-green-100 ml-1">/ Saison</span>
+              </div>
+              <ul class="space-y-2.5 text-xs text-gray-200">
+                <li class="flex items-start gap-2">✓ <span>Volles Spielrecht auf allen 4 Plätzen</span></li>
+                <li class="flex items-start gap-2">✓ <span>Online-Buchen über Tennis-Challenge</span></li>
+                <li class="flex items-start gap-2">✓ <span>LED-Flutlicht inklusive</span></li>
+              </ul>
+            </div>
+            <a href="#membership-contact-container" class="block w-full text-center bg-clay-600 hover:bg-clay-500 text-white font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider mt-6 transition-colors shadow-md">Jetzt beitreten</a>
+          </div>
+
+          <!-- Einzel-Aktivmitglied -->
+          <div class="bg-white rounded-3xl p-6 border border-stone-200 flex flex-col justify-between text-tennis-dark shadow-sm hover:border-stone-300 transition-all">
+            <div>
+              <h4 class="text-lg font-bold uppercase font-display text-tennis-dark">Einzel-Aktivmitglied</h4>
+              <p class="text-xs text-gray-500 mt-1 mb-4 leading-relaxed">Reguläre Mitgliedschaft ab Alter 20 Jahren.</p>
+              <div class="flex items-baseline mb-4">
+                <span class="text-3xl font-extrabold">CHF 380.00</span>
+                <span class="text-xs text-gray-500 ml-1">/ Jahr</span>
+              </div>
+              <ul class="space-y-2.5 text-xs text-gray-600">
+                <li class="flex items-start gap-2">✓ <span>Unbegrenzte Reservationen Mooswies</span></li>
+                <li class="flex items-start gap-2">✓ <span>Berechtigung Interclubbetrieb</span></li>
+                <li class="flex items-start gap-2">✓ <span>Asymmetrische LED-Nutzung</span></li>
+              </ul>
+            </div>
+            <a href="#membership-contact-container" class="block w-full text-center bg-tennis-dark hover:bg-tennis-green-800 text-white font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider mt-6 transition-colors">Jetzt beitreten</a>
+          </div>
+
+          <!-- Ehepaar / Konkubinat -->
+          <div class="bg-white rounded-3xl p-6 border border-stone-200 flex flex-col justify-between text-tennis-dark shadow-sm hover:border-stone-300 transition-all">
+            <div>
+              <h4 class="text-lg font-bold uppercase font-display text-tennis-dark">Ehepaar / Konkubinat</h4>
+              <p class="text-xs text-gray-500 mt-1 mb-4 leading-relaxed">Für im selben Haushalt lebende Aktivmitglieder.</p>
+              <div class="flex items-baseline mb-4">
+                <span class="text-3xl font-extrabold">CHF 650.00</span>
+                <span class="text-xs text-gray-500 ml-1">/ Jahr</span>
+              </div>
+              <ul class="space-y-2.5 text-xs text-gray-600">
+                <li class="flex items-start gap-2">✓ <span>Zwei vollwertige Aktivmitgliedschaften</span></li>
+                <li class="flex items-start gap-2">✓ <span>Uneingeschränktes Buchungsrecht</span></li>
+                <li class="flex items-start gap-2">✓ <span>Gemeinsames Tennis-Challenge Konto</span></li>
+              </ul>
+            </div>
+            <a href="#membership-contact-container" class="block w-full text-center bg-tennis-dark hover:bg-tennis-green-800 text-white font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider mt-6 transition-colors">Jetzt beitreten</a>
+          </div>
+
+          <!-- Firmenmitgliedschaft -->
+          <div class="bg-white rounded-3xl p-6 border border-stone-200 flex flex-col justify-between text-tennis-dark shadow-sm hover:border-stone-300 transition-all">
+            <div>
+              <h4 class="text-lg font-bold uppercase font-display text-tennis-dark">Firmenmitgliedschaft</h4>
+              <p class="text-xs text-gray-500 mt-1 mb-4 leading-relaxed">Übertragbares Spielrecht für KMUs & Partner.</p>
+              <div class="flex items-baseline mb-4">
+                <span class="text-3xl font-extrabold">CHF 1'000.00</span>
+                <span class="text-xs text-gray-500 ml-1">/ Jahr</span>
+              </div>
+              <ul class="space-y-2.5 text-xs text-gray-600">
+                <li class="flex items-start gap-2">✓ <span>Spielrecht für 2 Personen gleichzeitig</span></li>
+                <li class="flex items-start gap-2">✓ <span>Ideale Möglichkeit für Mitarbeiter</span></li>
+                <li class="flex items-start gap-2">✓ <span>Firmen-Logo auf Sponsorenwand</span></li>
+              </ul>
+            </div>
+            <a href="#membership-contact-container" class="block w-full text-center bg-tennis-dark hover:bg-tennis-green-800 text-white font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider mt-6 transition-colors">Jetzt beitreten</a>
+          </div>
+
+        </div>
+
+        <!-- Secondary Categories Row -->
+        <h3 class="text-xl font-extrabold text-tennis-dark text-center mb-6 font-display">Zusätzliche & Vergünstigte Mitgliedschaften</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 max-w-6xl mx-auto">
+          
+          <!-- Lehrlinge / Studenten -->
+          <div class="bg-stone-50 rounded-2xl p-6 border border-stone-200 flex flex-col justify-between shadow-sm hover:border-clay-500/30 transition-colors">
+            <div>
+              <span class="text-[10px] font-mono tracking-widest text-clay-600 font-bold uppercase block mb-1">Alter 20-29</span>
+              <h5 class="font-bold text-base text-tennis-dark leading-tight">Lehrlinge / Studenten</h5>
+              <p class="text-2xl font-extrabold mt-2 text-clay-600">CHF 200.00 <span class="text-xs font-normal text-gray-500">/ Jahr</span></p>
+              <p class="text-xs text-gray-500 mt-3 leading-relaxed">Für Jugendliche und Studierende in Ausbildung. Ausweis erforderlich.</p>
+            </div>
+            <a href="#membership-contact-container" class="mt-4 text-xs font-bold text-clay-600 hover:text-clay-500 text-left">Jetzt anfragen &rarr;</a>
+          </div>
+
+          <!-- Junioren -->
+          <div class="bg-stone-50 rounded-2xl p-6 border border-stone-200 flex flex-col justify-between shadow-sm hover:border-clay-500/30 transition-colors">
+            <div>
+              <span class="text-[10px] font-mono tracking-widest text-clay-600 font-bold uppercase block mb-1">Alter 16-19</span>
+              <h5 class="font-bold text-base text-tennis-dark leading-tight">Junioren (16-19)</h5>
+              <p class="text-2xl font-extrabold mt-2 text-clay-600">CHF 150.00 <span class="text-xs font-normal text-gray-500">/ Jahr</span></p>
+              <p class="text-xs text-gray-500 mt-3 leading-relaxed">Rabattierte Tarife anwendbar, falls die Eltern ebenfalls Clubmitglieder sind.</p>
+            </div>
+            <a href="#membership-contact-container" class="mt-4 text-xs font-bold text-clay-600 hover:text-clay-500 text-left">Jetzt anfragen &rarr;</a>
+          </div>
+
+          <!-- Schüler -->
+          <div class="bg-stone-50 rounded-2xl p-6 border border-stone-200 flex flex-col justify-between shadow-sm hover:border-clay-500/30 transition-colors">
+            <div>
+              <span class="text-[10px] font-mono tracking-widest text-clay-600 font-bold uppercase block mb-1">Bis Alter 15</span>
+              <h5 class="font-bold text-base text-tennis-dark leading-tight">Schüler (bis 15)</h5>
+              <p class="text-2xl font-extrabold mt-2 text-clay-600">CHF 100.00 <span class="text-xs font-normal text-gray-500">/ Jahr</span></p>
+              <p class="text-xs text-gray-500 mt-3 leading-relaxed">Gratis, falls beide Elternteile Aktivmitglieder im Tennisclub Gossau SG sind.</p>
+            </div>
+            <a href="#membership-contact-container" class="mt-4 text-xs font-bold text-clay-600 hover:text-clay-500 text-left">Jetzt anfragen &rarr;</a>
+          </div>
+
+          <!-- Passivmitglied -->
+          <div class="bg-stone-50 rounded-2xl p-6 border border-stone-200 flex flex-col justify-between shadow-sm hover:border-clay-500/30 transition-colors">
+            <div>
+              <span class="text-[10px] font-mono tracking-widest text-clay-600 font-bold uppercase block mb-1">Unterstützer</span>
+              <h5 class="font-bold text-base text-tennis-dark leading-tight">Passivmitglied</h5>
+              <p class="text-2xl font-extrabold mt-2 text-clay-600">CHF 50.00 <span class="text-xs font-normal text-gray-500">/ Jahr</span></p>
+              <p class="text-xs text-gray-500 mt-3 leading-relaxed">Unterstütze unseren Traditionsverein und sei bei allen Clubanlässen dabei.</p>
+            </div>
+            <a href="#membership-contact-container" class="mt-4 text-xs font-bold text-clay-600 hover:text-clay-500 text-left">Jetzt anfragen &rarr;</a>
+          </div>
+
+        </div>
+
+        <!-- ANMELDUNG & KONTAKT SECTION (REPLACES BEITRITTSERKLÄRUNG) -->
+        <div class="max-w-4xl mx-auto bg-white rounded-3xl p-8 sm:p-12 border border-stone-200 shadow-xl scroll-mt-24 text-center" id="training-contact-container">
+          <div class="w-16 h-16 bg-tennis-green-50 text-tennis-dark rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-tennis-green-500/10">
+            <i class="fa-solid fa-address-book text-2xl"></i>
+          </div>
+          <h4 class="text-3xl font-extrabold text-tennis-dark font-display">Anmeldung & Kontakt</h4>
+          <p class="text-gray-600 mt-4 max-w-2xl mx-auto text-base">
+            Hast du Fragen zu unseren Trainingsangeboten oder möchtest du eine Schnupperstunde vereinbaren? Unser Junioren-Betreuer Sabyasachi Gaan steht dir jederzeit gerne zur Verfügung!
+          </p>
+
+          <div class="mt-8 bg-stone-50 border border-stone-200 rounded-2xl p-6 sm:p-8 max-w-xl mx-auto flex flex-col sm:flex-row items-center gap-6 text-left shadow-sm">
+            <div class="w-24 h-24 rounded-full overflow-hidden bg-stone-100 border-2 border-clay-500 shrink-0 shadow-sm relative">
+              <img 
+                src="sabyasachi.jpg" 
+                alt="Sabyasachi Gaan" 
+                class="w-full h-full object-cover"
+                onerror="this.src='https://www.tcgossau.ch/clubdesk/fileservlet?type=image&id=1000457&s=djEttYh2Spx-MCKi-NOvIJhKvytqLsbpKAJylgJig77IbJk=&imageFormat=_1024x1024';"
+              />
+            </div>
+            <div class="space-y-2 flex-grow">
+              <div>
+                <h5 class="font-extrabold text-tennis-dark text-xl font-display">Sabyasachi Gaan</h5>
+                <p class="text-xs font-bold text-clay-600 uppercase tracking-widest">Junioren-Betreuer & Ansprechpartner</p>
+              </div>
+              <p class="text-gray-500 text-sm">
+                Koordiniert alle Trainingsangebote, Schnupperkurse und Mitgliedschaftsanfragen auf der Mooswies.
+              </p>
+              <div class="pt-2 flex flex-col sm:flex-row gap-3">
+                <a 
+                  href="tel:+41794033493" 
+                  class="flex items-center justify-center gap-2 bg-tennis-dark hover:bg-tennis-green-800 text-white font-bold py-2 px-4 rounded-xl text-xs uppercase tracking-wider transition-colors shadow-sm"
+                >
+                  <i class="fa-solid fa-phone"></i>
+                  <span>+41 79 403 34 93</span>
+                </a>
+                <a 
+                  href="mailto:sabyasachi.gaan@tcgossau.ch" 
+                  class="flex items-center justify-center gap-2 bg-white hover:bg-stone-100 border border-stone-300 text-tennis-dark font-bold py-2 px-4 rounded-xl text-xs uppercase tracking-wider transition-colors shadow-sm"
+                >
+                  <i class="fa-solid fa-envelope"></i>
+                  <span>E-Mail schreiben</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+       <div class="max-w-4xl mx-auto mt-10 bg-white rounded-3xl p-8 sm:p-12 border border-stone-200 shadow-xl scroll-mt-24 text-center" id="membership-contact-container">
+          <div class="w-16 h-16 bg-tennis-green-50 text-tennis-dark rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-tennis-green-500/10">
+            <i class="fa-solid fa-user-check text-2xl"></i>
+          </div>
+          <h4 class="text-3xl font-extrabold text-tennis-dark font-display">Mitglied werden</h4>
+          <p class="text-gray-600 mt-4 max-w-2xl mx-auto text-base">
+            Für alle Fragen rund um Beitritt, Mitgliedschaftsmodelle und Anmeldung ist Stefano Tognazzi dein direkter Ansprechpartner.
+          </p>
+
+          <div class="mt-8 bg-stone-50 border border-stone-200 rounded-2xl p-6 sm:p-8 max-w-xl mx-auto flex flex-col sm:flex-row items-center gap-6 text-left shadow-sm">
+            <div class="w-24 h-24 rounded-full overflow-hidden bg-stone-100 border-2 border-clay-500 shrink-0 shadow-sm relative">
+              <img
+                src="stefano.jpg"
+                alt="Stefano Tognazzi"
+                class="w-full h-full object-cover"
+                onerror="this.src='https://www.tcgossau.ch/clubdesk/fileservlet?type=image&id=1000341&s=djEtQVAekqbJvjF2941sw9O1bQSOuQuhj2lc_qOpv1ZJaCg=&imageFormat=_1024x1024';"
+              />
+            </div>
+            <div class="space-y-2 flex-grow">
+              <div>
+                <h5 class="font-extrabold text-tennis-dark text-xl font-display">Stefano Tognazzi</h5>
+                <p class="text-xs font-bold text-clay-600 uppercase tracking-widest">Ansprechpartner Mitgliedschaft</p>
+              </div>
+              <p class="text-gray-500 text-sm">
+                Betreut alle Anfragen rund um Mitglied werden, Tarife und Beitritt beim Tennisclub Gossau SG.
+              </p>
+              <div class="pt-2 flex flex-col sm:flex-row gap-3">
+                <a
+                  href="tel:+41793074387"
+                  class="flex items-center justify-center gap-2 bg-tennis-dark hover:bg-stone-900 text-white font-bold py-2 px-4 rounded-xl text-xs uppercase tracking-wider transition-colors shadow-sm"
+                >
+                  <i class="fa-solid fa-phone"></i>
+                  <span>+41 79 307 43 87</span>
+                </a>
+                <a
+                  href="mailto:stefano.tognazzi@tcgossau.ch"
+                  class="flex items-center justify-center gap-2 bg-white hover:bg-stone-100 border border-stone-300 text-tennis-dark font-bold py-2 px-4 rounded-xl text-xs uppercase tracking-wider transition-colors shadow-sm"
+                >
+                  <i class="fa-solid fa-envelope"></i>
+                  <span>E-Mail schreiben</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    <!-- 8. REGIONAL SPONSORS & PARTNERS GRID -->
+    <section id="sponsors-section" class="py-16 bg-stone-100/60 border-t border-b border-stone-200/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h3 class="text-center text-xs font-bold text-gray-400 uppercase tracking-widest mb-10 font-mono">Unsere Sponsoren & Gönner</h3>
+        
+        <!-- Gold & Silver Sponsors Row -->
+        <div class="mb-6">
+          <h4 class="text-center text-xs font-bold text-clay-600 uppercase tracking-widest mb-6 font-display">Hauptsponsoren</h4>
+          <div class="flex flex-wrap items-center justify-center gap-5 sm:gap-8">
+            <!-- Sponsor 1: GNG AG Gossau -->
+            <div class="w-full sm:w-64 h-28 bg-white rounded-2xl p-5 flex flex-col items-center justify-center shadow-md border border-stone-200/60 hover:border-clay-500/30 transition-all group relative overflow-hidden">
+              <img 
+                src="https://www.gng.ch/wp-content/themes/gng/assets/img/logo-gng.png" 
+                alt="GNG AG Gossau" 
+                class="max-w-full max-h-16 object-contain filter grayscale group-hover:grayscale-0 transition-all"
+                onerror="this.style.display='none'; document.getElementById('gng-fallback').classList.remove('hidden');"
+              />
+              <div id="gng-fallback" class="hidden text-center">
+                <span class="block font-black text-2xl tracking-tighter text-stone-800">GNG AG</span>
+                <span class="block text-[10px] text-clay-600 font-bold uppercase tracking-widest -mt-1">Gossau</span>
+              </div>
+            </div>
+            <!-- Sponsor 2: Intersport EGE Flawil -->
+            <div class="w-full sm:w-64 h-28 bg-white rounded-2xl p-5 flex flex-col items-center justify-center shadow-md border border-stone-200/60 hover:border-clay-500/30 transition-all group relative overflow-hidden">
+              <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Intersport_logo.svg/512px-Intersport_logo.svg.png" 
+                alt="Intersport EGE Flawil" 
+                class="max-w-full max-h-12 object-contain filter grayscale group-hover:grayscale-0 transition-all"
+                onerror="this.style.display='none'; document.getElementById('intersport-fallback').classList.remove('hidden');"
+              />
+              <div id="intersport-fallback" class="hidden text-center">
+                <span class="block font-black text-xl tracking-tight text-[#002f6c] uppercase">Intersport EGE</span>
+                <span class="block text-[10px] text-clay-600 font-bold uppercase tracking-widest">Flawil</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 9. FOOTER SECTION -->
+    <footer class="bg-tennis-dark text-white pt-16 pb-12 mt-auto border-t-4 border-clay-600">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+          
+          <!-- Brand Column -->
+          <div class="space-y-4">
+            <div class="flex items-center space-x-3">
+              <div class="w-12 h-12 bg-white rounded-lg p-1 border border-stone-200/80 shadow-sm">
+                <img src="https://www.tcgossau.ch/clubdesk/fileservlet?type=image&id=1000114&s=djEt5NFc9JInLu3fcXtbC6fcCgKBG6lw5Vfr-VXkENkERX0=" alt="TC Gossau SG Logo" class="tcg-logo-img" onerror="this.style.opacity='0';" />
+              </div>
+              <span class="font-bold text-base font-display">TC Gossau SG</span>
+            </div>
+            <p class="text-xs text-gray-300 leading-relaxed">
+              Seit über 50 Jahren dein moderner Tennisclub auf der Mooswies in Gossau SG. Spielspass das ganze Jahr dank modernster Allwetterplätze.
+            </p>
+            <div class="pt-2 text-[11px] text-gray-400 space-y-1">
+              <p><i class="fa-solid fa-location-dot mr-1 text-clay-500"></i> Mooswies, Hirschenstrasse 25B</p>
+              <p class="ml-3.5">9200 Gossau SG, Schweiz</p>
+            </div>
+          </div>
+
+          <!-- Quick Navigation Links -->
+          <div>
+            <h5 class="font-bold text-xs uppercase tracking-wider text-clay-500 mb-4 font-mono">Navigation</h5>
+            <ul class="space-y-2.5 text-xs text-gray-300">
+              <li><a href="#news-section" class="hover:text-white transition-colors">Home / News</a></li>
+              <li><a href="#club-section" class="hover:text-white transition-colors">Club & Mannschaften</a></li>
+              <li><a href="#training-section" class="hover:text-white transition-colors">Training & Academy</a></li>
+              <li><a href="#membership-section" class="hover:text-white transition-colors">Tarife & Mitgliedschaft</a></li>
+              <li><a href="#booking-section" class="hover:text-white transition-colors">Platz buchen / Kontakt</a></li>
+            </ul>
+          </div>
+
+          <!-- Direct Contacts -->
+          <div>
+            <h5 class="font-bold text-xs uppercase tracking-wider text-clay-500 mb-4 font-mono">Kontakte</h5>
+            <ul class="space-y-2.5 text-xs text-gray-300">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-user-tie mt-0.5 text-clay-500 shrink-0"></i>
+                <div>
+                  <p class="font-bold">Claudio Büsser</p>
+                  <p class="text-[10px] text-gray-400">Präsident</p>
+                  <p class="mt-0.5 text-stone-300">+41 79 219 90 66</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-2 pt-1">
+                <i class="fa-solid fa-briefcase mt-0.5 text-clay-500 shrink-0"></i>
+                <div>
+                  <p class="font-bold">Anna Berger</p>
+                  <p class="text-[10px] text-gray-400">Geschäftsstelle</p>
+                  <p class="mt-0.5 text-stone-300">anna.tcg_geschaeftsstelle@tcgossau.ch</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Booking Widget Shortcuts -->
+          <div class="space-y-4">
+            <h5 class="font-bold text-xs uppercase tracking-wider text-clay-500 mb-4 font-mono">Reservations-Shortcut</h5>
+            <p class="text-xs text-gray-300 leading-relaxed">
+              Direktzugriff zum Tennis-Challenge Reservationsportal für Mitglieder und Spielberechtigte.
+            </p>
+            <a 
+              href="https://app.tennis-challenge.net/gossausg" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="w-full flex items-center justify-center space-x-2 bg-clay-600 hover:bg-clay-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition-colors shadow-md"
+            >
+              <i class="fa-solid fa-circle-play text-[10px]"></i>
+              <span>Tennis-Challenge Portal</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Lower Row / Copyright & CMS Notice -->
+        <div class="pt-8 mt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-400 space-y-4 sm:space-y-0">
+          <p>&copy; 2026 Tennisclub Gossau SG. Alle Rechte vorbehalten. Designed & built for Mooswies.</p>
+          <!-- Technical Integration Note -->
+          <p class="text-center sm:text-right text-gray-500 italic max-w-md">
+            Technischer Integrations-Hinweis (ClubDesk / Tennis-Challenge): Dieses Online-Modul ist vorkonfiguriert zur Integration in das ClubDesk CMS.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Native Zero-Dependency Javascript for responsive elements -->
+    <script>
+      // Sticky Glassmorphic Header transition on scroll
+      const header = document.getElementById('tcg-header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+          header.classList.add('py-2');
+          header.classList.remove('py-3');
+        } else {
+          header.classList.add('py-3');
+          header.classList.remove('py-2');
+        }
+      });
+
+      // Accessible Mobile Menu Overlay toggles
+      const menuToggleBtn = document.getElementById('mobile-menu-toggle');
+      const mobileOverlay = document.getElementById('mobile-nav-overlay');
+      const mobilePanel = document.getElementById('mobile-nav-panel');
+      const mobileBackdrop = document.getElementById('mobile-nav-backdrop');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+      const closeIcon = document.getElementById('close-icon');
+      const bodyElement = document.body;
+
+      function setMobileMenuState(open) {
+        if (open) {
+          mobileOverlay.classList.remove('hidden');
+          mobileOverlay.setAttribute('aria-hidden', 'false');
+          mobilePanel.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none');
+          menuToggleBtn.setAttribute('aria-expanded', 'true');
+          hamburgerIcon.classList.add('hidden');
+          closeIcon.classList.remove('hidden');
+          bodyElement.classList.add('overflow-hidden');
+        } else {
+          mobilePanel.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
+          mobileOverlay.setAttribute('aria-hidden', 'true');
+          menuToggleBtn.setAttribute('aria-expanded', 'false');
+          hamburgerIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+          bodyElement.classList.remove('overflow-hidden');
+          window.setTimeout(() => {
+            if (mobileOverlay.getAttribute('aria-hidden') === 'true') {
+              mobileOverlay.classList.add('hidden');
+            }
+          }, 200);
+        }
+      }
+
+      menuToggleBtn.addEventListener('click', () => {
+        const isHidden = mobileOverlay.classList.contains('hidden') || mobileOverlay.getAttribute('aria-hidden') === 'true';
+        setMobileMenuState(isHidden);
+      });
+
+      mobileBackdrop.addEventListener('click', () => setMobileMenuState(false));
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          setMobileMenuState(false);
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1024) {
+          setMobileMenuState(false);
+        }
+      });
+
+      // Close mobile drawer when clicking on any link
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          setMobileMenuState(false);
+        });
+      });
+
+      // Pre-select category dropdown when selecting a card
+      function preselectCategory(categoryName) {
+        const selectElement = document.getElementById('category');
+        if (selectElement) {
+          selectElement.value = categoryName;
+          // Smooth scroll to form container
+          const target = document.getElementById('training-contact-container');
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }
+
+      // Handle Online signup form submission
+      function handleFormSubmit(event) {
+        event.preventDefault();
+        
+        // Form field data retrieval (Optional backend linkage)
+        const fullName = document.getElementById('full-name').value;
+        const birthDate = document.getElementById('birth-date').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const category = document.getElementById('category').value;
+
+        console.log("TCG Form Submission:", { fullName, birthDate, email, phone, category });
+
+        // Direct Visual confirmation animation
+        const formElement = document.getElementById('tcg-signup-form');
+        const successMessage = document.getElementById('signup-success-message');
+
+        formElement.classList.add('hidden');
+        successMessage.classList.remove('hidden');
+      }
+
+      // Reset signup form UI
+      function resetFormUI() {
+        const formElement = document.getElementById('tcg-signup-form');
+        const successMessage = document.getElementById('signup-success-message');
+
+        formElement.reset();
+        successMessage.classList.add('hidden');
+        formElement.classList.remove('hidden');
+      }
+    </script>
+  </body>
+</html>
